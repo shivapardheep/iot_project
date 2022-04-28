@@ -1,11 +1,15 @@
+import 'package:dio/dio.dart';
+import 'package:iot_project/sensor%20pages/Humidity%20Pages/HumiditySubPage.dart';
+import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/SoilSubPage.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Two.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/device%20one.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/subTemperature.dart';
 
 import '../../graph pages/graph 2 temp.dart';
-import 'device Three.dart';
-import 'device Two.dart';
-import 'device one.dart';
 
 class HumidityPage extends StatefulWidget {
   const HumidityPage({Key? key}) : super(key: key);
@@ -15,16 +19,37 @@ class HumidityPage extends StatefulWidget {
 }
 
 class _HumidityPageState extends State<HumidityPage> {
-  // DateTime now = DateTime.now();
-  // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
-  String dropdownvalue = 'Device 1';
+  var fetchGetData;
+
+  // get data
+  void getHttp() async {
+    try {
+      var response = await Dio()
+          .get('http://angappanmuthu.pythonanywhere.com/api/devices/');
+      setState(() {
+        fetchGetData = response.data;
+        print(fetchGetData[0]['device']);
+      });
+      // print(response.data[2]);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  String dropdownvalue = 'Device_1';
 
   // List of items in our dropdown menu
   var items = [
-    'Device 1',
-    'Device 2',
-    'Device 3',
+    'Device_1',
+    'Device_2',
+    'Device_3',
   ];
+  @override
+  void initState() {
+    super.initState();
+    // getHttp();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,11 +115,20 @@ class _HumidityPageState extends State<HumidityPage> {
                   const SizedBox(
                     height: 30,
                   ),
-                  dropdownvalue == "Device 1"
-                      ? HOne()
-                      : dropdownvalue == "Device 2"
-                          ? HTwo()
-                          : HThree(),
+                  dropdownvalue == "Device_1"
+                      ? HumiditySubPage(
+                          deviceId: 'Device_1',
+                          sensor: 'humidity',
+                        )
+                      : dropdownvalue == "Device_2"
+                          ? HumiditySubPage(
+                              deviceId: 'Device_2',
+                              sensor: 'humidity',
+                            )
+                          : HumiditySubPage(
+                              deviceId: 'Device_3',
+                              sensor: 'humidity',
+                            ),
                 ],
               ),
             ),

@@ -7,76 +7,129 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class GraphTwo extends StatefulWidget {
-  const GraphTwo({Key? key}) : super(key: key);
+  final List listData;
 
+  const GraphTwo({Key? key, required this.listData}) : super(key: key);
   @override
   State<GraphTwo> createState() => _GraphTwoState();
 }
 
 class _GraphTwoState extends State<GraphTwo> {
   //dio get data function
-  var fetchdata;
+  // var fetchdata;
+  // void getHttp() async {
+  //   try {
+  //     var response = await Dio().get(
+  //         'http://www.randomnumberapi.com/api/v1.0/random?min=1&max=9&count=6');
+  //     setState(() {
+  //       fetchdata = response.data;
+  //     });
+  //   } catch (e) {
+  //     print("error is : $e");
+  //   }
+  // }
+  //
+  // Future getData() async {
+  //   final response = await http.get(Uri.parse(
+  //       'http://www.randomnumberapi.com/api/v1.0/random?min=30&max=40&count=5'));
+  //
+  //   if (response.statusCode == 200) {
+  //     var data = jsonDecode(response.body.toString());
+  //     setState(() {
+  //       // fetchdata = data;
+  //     });
+  //     return data;
+  //   } else {
+  //     throw Exception('Failed to load album');
+  //   }
+  // }
+  var fetchGetData;
+  var fetchPostData;
   void getHttp() async {
     try {
       var response = await Dio().get(
-          'http://www.randomnumberapi.com/api/v1.0/random?min=1&max=9&count=6');
+          'https://bae4-2409-4072-618b-fcf8-9530-a1f8-eb3a-6ed0.ngrok.io/api/devices/?format=json');
       setState(() {
-        fetchdata = response.data;
+        fetchGetData = response.data;
       });
+      // print(response.data[2]);
     } catch (e) {
-      print("error is : $e");
+      print(e);
     }
   }
 
-  Future getData() async {
-    final response = await http.get(Uri.parse(
-        'http://www.randomnumberapi.com/api/v1.0/random?min=30&max=40&count=5'));
-
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body.toString());
+  //post to get
+  void postHttp() async {
+    try {
+      var response = await Dio().post(
+          "https://bae4-2409-4072-618b-fcf8-9530-a1f8-eb3a-6ed0.ngrok.io/api/chart",
+          data: {"device_id": "001"});
       setState(() {
-        // fetchdata = data;
+        fetchPostData = response.data;
+        fetchPostData = fetchPostData["temperature"];
+        for (int i = 0; i < int.parse(fetchPostData.length.toString()); i++) {
+          print("answer is : ${fetchPostData.length.toString()}");
+        }
       });
-      return data;
-    } else {
-      throw Exception('Failed to load album');
+      if (fetchPostData != null) {
+        setState(() {
+          startCreatingDemoData();
+        });
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
+  late List list2;
   @override
   void initState() {
     super.initState();
     setChartData();
-    startCreatingDemoData();
     getHttp();
-    getData();
+    postHttp();
+    list2 = widget.listData;
+    // fetchPostData == null ? "" : startCreatingDemoData();
+    // getData();
   }
 
   void startCreatingDemoData() async {
-    for (int i = 0; i <= 5; i++) {
-      // if (i == 0) continue;
-      fetchdata.toString() == null
-          ? CircularProgressIndicator()
-          : await Future.delayed((Duration(seconds: 1))).then(
-              (value) {
-                Random random = Random();
-                // print(fetchdata == null ? 3 : fetchdata[i]);
-                int a = fetchdata == null ? 3 : fetchdata[i];
-                // print("a is : $a");
-                fetchdata == null
-                    ? CircularProgressIndicator()
-                    : flspots.add(
-                        FlSpot(
-                          double.parse(i.toString()),
-                          double.parse(a.toString()),
-                        ),
-                      );
-                setState(() {
-                  setChartData();
-                  // print(random.nextDouble() * 8);
-                });
-              },
-            );
+    print("Called");
+    for (int i = 0; i < int.parse(fetchPostData.length.toString()); i++) {
+      print(fetchPostData[i]);
+
+      await Future.delayed((Duration(seconds: 1))).then(
+        (value) {
+          var a = double.parse(fetchPostData[i]).round() < 10
+              ? 1
+              : double.parse(fetchPostData[i]).round() < 20
+                  ? 2
+                  : double.parse(fetchPostData[i]).round() < 30
+                      ? 3
+                      : double.parse(fetchPostData[i]).round() < 40
+                          ? 4
+                          : double.parse(fetchPostData[i]).round() < 50
+                              ? 5
+                              : double.parse(fetchPostData[i]).round() < 60
+                                  ? 6
+                                  : double.parse(fetchPostData[i]).round() < 70
+                                      ? 7
+                                      : double.parse(fetchPostData[i]).round() <
+                                              80
+                                          ? 8
+                                          : 9;
+          flspots.add(
+            FlSpot(
+              double.parse(i.toString()),
+              double.parse(a.toString()),
+            ),
+          );
+          setState(() {
+            setChartData();
+            // print(random.nextDouble() * 8);
+          });
+        },
+      );
     }
   }
 

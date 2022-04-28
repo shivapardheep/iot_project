@@ -42,7 +42,9 @@ class _WThreeState extends State<WThree> {
         Container(
             height: 200,
             width: MediaQuery.of(context).size.width - 30,
-            child: GraphTwo()),
+            child: GraphTwo(
+              listData: [],
+            )),
       ],
     );
   }

@@ -5,6 +5,9 @@ import 'graph 2 temp.dart';
 import 'graph 3 soil.dart';
 
 class GraphPage extends StatefulWidget {
+  final List listData;
+
+  const GraphPage({Key? key, required this.listData}) : super(key: key);
   @override
   _GraphPageState createState() => _GraphPageState();
 }
@@ -60,7 +63,9 @@ class _GraphPageState extends State<GraphPage> {
                   child: SizedBox(
                     height: 200,
                     // width: MediaQuery.of(context).size.width * .9,
-                    child: GraphTwo(),
+                    child: GraphTwo(
+                      listData: [],
+                    ),
                   ),
                 ),
                 Text(

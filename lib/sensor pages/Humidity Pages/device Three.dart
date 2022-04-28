@@ -44,7 +44,7 @@ class _HThreeState extends State<HThree> {
             height: 200,
             width: MediaQuery.of(context).size.width - 30,
             child: GraphOne(
-              date: ["11 am"],
+              date: ["11am", "12pm", "1pm", "2pm", "3pm"],
             )),
       ],
     );

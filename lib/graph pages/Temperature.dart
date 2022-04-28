@@ -3,20 +3,24 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class GraphOne extends StatefulWidget {
+class TemperatureGraph extends StatefulWidget {
   final List date;
+  final List value;
 
-  const GraphOne({Key? key, required this.date}) : super(key: key);
+  const TemperatureGraph({Key? key, required this.date, required this.value})
+      : super(key: key);
 
   @override
-  State<GraphOne> createState() => _GraphOneState();
+  State<TemperatureGraph> createState() => _TemperatureGraphState();
 }
 
-class _GraphOneState extends State<GraphOne> {
-  late List _data;
+class _TemperatureGraphState extends State<TemperatureGraph> {
+  List<dynamic> _data = [];
+  List<dynamic> _value = [];
   void checkfun() {
     setState(() {
       print("data is : ${_data.toString()}");
+      print("value is : ${_value.toString()}");
     });
   }
 
@@ -24,30 +28,40 @@ class _GraphOneState extends State<GraphOne> {
   void initState() {
     super.initState();
     setChartData();
-    startCreatingDemoData();
     _data = widget.date.toList();
+    _value = widget.value.toList();
     checkfun();
+    startCreatingDemoData();
   }
 
   void startCreatingDemoData() async {
-    for (int i = 0; i < 6; i++) {
-      if (i == 0) continue;
+    print("Called");
+    for (int i = 0; i < int.parse(_value.length.toString()); i++) {
+      // print("for loop values ${_value[i]}");
+
       await Future.delayed((Duration(seconds: 1))).then(
         (value) {
-          int min = 10;
-
-          int max = 200;
-
-          // int result = min + random.nextInt(max - min);
-          Random random = Random();
+          var a = double.parse(_value[i]).round() < 10
+              ? 1
+              : double.parse(_value[i]).round() < 20
+                  ? 2
+                  : double.parse(_value[i]).round() < 30
+                      ? 3
+                      : double.parse(_value[i]).round() < 40
+                          ? 4
+                          : double.parse(_value[i]).round() < 50
+                              ? 5
+                              : double.parse(_value[i]).round() < 60
+                                  ? 6
+                                  : double.parse(_value[i]).round() < 70
+                                      ? 7
+                                      : double.parse(_value[i]).round() < 80
+                                          ? 8
+                                          : 9;
           flspots.add(
             FlSpot(
               double.parse(i.toString()),
-              random.nextDouble() * 8.toInt() <= 3
-                  ? 5.0
-                  : random.nextDouble() * 8.toInt() <= 6
-                      ? 7.0
-                      : 8.0,
+              double.parse(a.toString()),
             ),
           );
           setState(() {
@@ -83,21 +97,23 @@ class _GraphOneState extends State<GraphOne> {
           bottomTitles: SideTitles(
             // checkToShowTitle: ,
             getTitles: (value) {
-              switch (value.toInt()) {
-                case 1:
-                  return _data[0];
-                case 2:
-                  return _data[1];
-                case 3:
-                  return _data[2];
-                case 4:
-                  return _data[3];
-                case 5:
-                  return _data[4];
-                case 6:
-                  return '';
-                case 7:
-                  return '';
+              for (int i = 0; i < int.parse(_data.length.toString()); i++) {
+                switch (value.toInt()) {
+                  case 1:
+                    return _data[0];
+                  case 2:
+                    return _data[1];
+                  case 3:
+                    return _data[2];
+                  case 4:
+                    return _data[3];
+                  case 5:
+                    return _data[4];
+                  case 6:
+                    return '';
+                  case 7:
+                    return '';
+                }
               }
               return '';
             },
@@ -172,7 +188,7 @@ class _GraphOneState extends State<GraphOne> {
   }
 
   List<FlSpot> flspots = [
-    FlSpot(0, 6),
+    FlSpot(0, 1),
   ];
 
   List<Color> gradientColors = [

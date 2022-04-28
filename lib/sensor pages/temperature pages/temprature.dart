@@ -1,30 +1,55 @@
+import 'package:dio/dio.dart';
+import 'package:iot_project/sensor%20pages/Humidity%20Pages/HumiditySubPage.dart';
+import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/SoilSubPage.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Two.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20one.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/subTemperature.dart';
 
 import '../../graph pages/graph 2 temp.dart';
 
-class Temprature extends StatefulWidget {
-  const Temprature({Key? key}) : super(key: key);
+class TemperaturePage extends StatefulWidget {
+  const TemperaturePage({Key? key}) : super(key: key);
 
   @override
-  State<Temprature> createState() => _TempratureState();
+  State<TemperaturePage> createState() => _TemperaturePageState();
 }
 
-class _TempratureState extends State<Temprature> {
-  // DateTime now = DateTime.now();
-  // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
-  String dropdownvalue = 'Device 1';
+class _TemperaturePageState extends State<TemperaturePage> {
+  var fetchGetData;
+
+  // get data
+  void getHttp() async {
+    try {
+      var response = await Dio()
+          .get('http://angappanmuthu.pythonanywhere.com/api/devices/');
+      setState(() {
+        fetchGetData = response.data;
+        print(fetchGetData[0]['device']);
+      });
+      // print(response.data[2]);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  String dropdownvalue = 'Device_1';
 
   // List of items in our dropdown menu
   var items = [
-    'Device 1',
-    'Device 2',
-    'Device 3',
+    'Device_1',
+    'Device_2',
+    'Device_3',
   ];
+  @override
+  void initState() {
+    super.initState();
+    // getHttp();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,11 +115,20 @@ class _TempratureState extends State<Temprature> {
                   const SizedBox(
                     height: 30,
                   ),
-                  dropdownvalue == "Device 1"
-                      ? DOne()
-                      : dropdownvalue == "Device 2"
-                          ? DTwo()
-                          : DThree(),
+                  dropdownvalue == "Device_1"
+                      ? TempSubPage(
+                          deviceId: 'Device_1',
+                          sensor: 'temperature',
+                        )
+                      : dropdownvalue == "Device_2"
+                          ? TempSubPage(
+                              deviceId: 'Device_2',
+                              sensor: 'temperature',
+                            )
+                          : TempSubPage(
+                              deviceId: 'Device_3',
+                              sensor: 'temperature',
+                            ),
                 ],
               ),
             ),

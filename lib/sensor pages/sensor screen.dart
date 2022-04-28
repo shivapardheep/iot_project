@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/PH%20sensor.dart';
+import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/WaterFlow.dart';
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/soil%20moisture.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/temprature.dart';
 
 import 'Humidity Pages/Humidity.dart';
-import 'Ph sensor pages/PH sensor.dart';
-import 'WaterFlow Pages/WaterFlow.dart';
 
 class SensorScreen extends StatefulWidget {
   const SensorScreen({Key? key}) : super(key: key);
@@ -36,8 +36,10 @@ class _SensorScreenState extends State<SensorScreen> {
                         icon: FontAwesomeIcons.temperature2,
                         data: "Temperature",
                         action: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => Temprature()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => TemperaturePage()));
                         }),
                     containerButton(
                       icon: FontAwesomeIcons.droplet,
@@ -51,10 +53,8 @@ class _SensorScreenState extends State<SensorScreen> {
                       icon: FontAwesomeIcons.waterLadder,
                       data: "Soil Moisture",
                       action: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => SoilMoisturePage()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => SoilPage()));
                       },
                     ),
                     containerButton(
@@ -62,7 +62,7 @@ class _SensorScreenState extends State<SensorScreen> {
                       data: "Ph Sensor",
                       action: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => PhSensorPages()));
+                            MaterialPageRoute(builder: (_) => PhPage()));
                       },
                     ),
                     containerButton(
@@ -70,7 +70,7 @@ class _SensorScreenState extends State<SensorScreen> {
                       data: "Water Flow",
                       action: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => WaterFlow()));
+                            MaterialPageRoute(builder: (_) => WaterPage()));
                       },
                     ),
                   ],

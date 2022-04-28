@@ -16,78 +16,107 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              // crossAxisAlignment: CrosAx,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      "Home Page",
-                      style: GoogleFonts.anton().copyWith(fontSize: 50),
-                    ),
-                    const SizedBox(
-                      height: 70,
-                    ),
-                    CustomButton(
-                        icon: Icons.sensors_sharp,
-                        data: "Sensor Report",
-                        color: Colors.blue,
-                        action: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => SensorScreen()));
-                        }),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    CustomButton(
-                        icon: Icons.perm_device_information_sharp,
-                        data: "Device Report",
-                        color: Colors.deepOrange,
-                        action: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => DeviceScreen()));
-                          DeviceScreen();
-                        }),
-                  ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    // crossAxisAlignment: CrosAx,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            "Home Page",
+                            style: GoogleFonts.anton().copyWith(fontSize: 50),
+                          ),
+                          const SizedBox(
+                            height: 70,
+                          ),
+                          CustomButton(
+                              icon: Icons.sensors_sharp,
+                              data: "Sensor Report",
+                              color: Colors.blue,
+                              action: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => SensorScreen()));
+                              }),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          CustomButton(
+                              icon: Icons.perm_device_information_sharp,
+                              data: "Device Report",
+                              color: Colors.deepOrange,
+                              action: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => DeviceScreen()));
+                                DeviceScreen();
+                              }),
+                        ],
+                      ),
+                      // const SizedBox(
+                      //   height: 50,
+                      // ),
+                      ToggleSwitch(
+                        minWidth: 90.0,
+                        minHeight: 50,
+                        cornerRadius: 20.0,
+                        activeBgColors: const [
+                          [Colors.green],
+                          [Colors.red]
+                        ],
+                        activeFgColor: Colors.white,
+                        inactiveBgColor: Colors.grey[400],
+                        inactiveFgColor: Colors.white,
+                        initialLabelIndex: 1,
+                        totalSwitches: 2,
+                        labels: const ['Motor on', 'Motor off'],
+                        customTextStyles: const [
+                          TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white)
+                        ],
+                        radiusStyle: true,
+                        onToggle: (index) {
+                          print('switched to: $index');
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-                // const SizedBox(
-                //   height: 50,
-                // ),
-                ToggleSwitch(
-                  minWidth: 90.0,
-                  minHeight: 50,
-                  cornerRadius: 20.0,
-                  activeBgColors: const [
-                    [Colors.green],
-                    [Colors.red]
-                  ],
-                  activeFgColor: Colors.white,
-                  inactiveBgColor: Colors.grey[400],
-                  inactiveFgColor: Colors.white,
-                  initialLabelIndex: 1,
-                  totalSwitches: 2,
-                  labels: const ['Motor on', 'Motor off'],
-                  customTextStyles: const [
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white)
-                  ],
-                  radiusStyle: true,
-                  onToggle: (index) {
-                    print('switched to: $index');
-                  },
-                ),
-              ],
+              ),
             ),
-          ),
+            Container(
+              height: 100,
+              width: double.infinity,
+              color: Color(0xff4e439b),
+              child: Column(
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Image(
+                      image: AssetImage("assets/images/ANT.png"),
+                      height: 50,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  Text(
+                    "© 2017 Advanced Networking Technology",
+                    style: TextStyle(color: Colors.white54),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

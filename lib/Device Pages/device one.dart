@@ -2,8 +2,6 @@ import 'package:iot_project/sensor%20pages/Humidity%20Pages/device%20one.dart';
 import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20one.dart';
 import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20one.dart';
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20one.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Two.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20one.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

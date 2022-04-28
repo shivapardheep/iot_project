@@ -1,179 +1,84 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:iot_project/UrlPage/urlpage.dart';
+import 'package:iot_project/graph%20pages/Humidity.dart';
+import 'package:iot_project/graph%20pages/Ph.dart';
+import 'package:iot_project/graph%20pages/SoilMoisure.dart';
+import 'package:iot_project/graph%20pages/WaterFlow.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/temprature.dart';
 
-import 'StyleScheme.dart';
+import '../graph pages/Temperature.dart';
 
-class TrackOrderPage extends StatelessWidget {
+class RoughPage extends StatefulWidget {
+  const RoughPage({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: RoughWork(),
-    );
+  State<RoughPage> createState() => _RoughPageState();
+}
+
+class _RoughPageState extends State<RoughPage> {
+  var fetchGetData;
+  var fetchPostData;
+  List<dynamic> sharevalue = [];
+  // late List dummy;
+  void getHttp() async {
+    try {
+      var response = await Dio().get(
+          'https://a789-2409-4072-618b-fcf8-9530-a1f8-eb3a-6ed0.ngrok.io/api/devices/');
+      setState(() {
+        fetchGetData = response.data;
+      });
+      // print(response.data[2]);
+    } catch (e) {
+      print(e);
+    }
   }
-}
 
-class RoughWork extends StatefulWidget {
+  //post to get
+  void postHttp() async {
+    try {
+      var response = await Dio().post(
+          "http://angappanmuthu.pythonanywhere.com/api/chart",
+          data: {"device_id": "001"});
+      setState(() {
+        fetchPostData = response.data;
+        fetchPostData = fetchPostData["ph_value"];
+        sharevalue = fetchPostData;
+        // for (int i = 0; i < int.parse(fetchPostData.length.toString()); i++) {
+        //   print(fetchPostData[i]);
+        //   sharevalue.add(fetchPostData[i]);
+        // }
+        print("share value is : $sharevalue");
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
-  _RoughWorkState createState() => _RoughWorkState();
-}
+  void initState() {
+    super.initState();
+    getHttp();
+    postHttp();
+  }
 
-class _RoughWorkState extends State<RoughWork> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {},
-        ),
-        title: Text(
-          "Track Order",
-          style: TextStyle(color: Colors.black),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {},
-          )
-        ],
+        title: Text("Rough Page"),
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Order Number 1001",
-              style: headingStyle,
-            ),
-            Text(
-              "Order confirmed. Ready to pick",
-              style: contentStyle.copyWith(color: Colors.grey, fontSize: 16),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
-              height: 1,
-              color: Colors.grey,
-            ),
-            Expanded(
-              child: Stack(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 13, top: 50),
-                    width: 4,
-                    height: 400,
-                    color: Colors.grey,
-                  ),
-                  Column(
-                    children: [
-                      statusWidget('confirmed', "Confirmed", true),
-                      statusWidget('onBoard2', "Picked Up", false),
-                      statusWidget('servicesImg', "In Pricess", false),
-                      statusWidget('shipped', "Shipped", false),
-                      statusWidget('Delivery', "Delivered", false),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              height: 1,
-              color: Colors.grey,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      border: Border.all(
-                        color: Colors.orange,
-                      )),
-                  child: Text(
-                    "Cancel Order",
-                    style: contentStyle.copyWith(color: Colors.orange),
-                  ),
+      body: Center(
+        child: Container(
+          height: 200,
+          child: sharevalue.isEmpty
+              ? CircularProgressIndicator()
+              : PhGraph(
+                  date: defaultDate,
+                  value: sharevalue,
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.orange,
-                  ),
-                  child: Text(
-                    "My Orders",
-                    style: contentStyle.copyWith(color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.orange,
-        iconSize: 30,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.track_changes), label: "Track Order"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.view_list), label: "My Orders"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.track_changes),
-            label: "Profile",
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container statusWidget(String img, String status, bool isActive) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
-      child: Row(
-        children: [
-          Container(
-            height: 30,
-            width: 30,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: (isActive) ? Colors.orange : Colors.white,
-                border: Border.all(
-                    color: (isActive) ? Colors.transparent : Colors.orange,
-                    width: 3)),
-          ),
-          SizedBox(
-            width: 50,
-          ),
-          Column(
-            children: [
-              Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/images/$img.png"),
-                        fit: BoxFit.contain)),
-              ),
-              Text(
-                status,
-                style: contentStyle.copyWith(
-                    color: (isActive) ? Colors.orange : Colors.black),
-              )
-            ],
-          )
-        ],
       ),
     );
   }

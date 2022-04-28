@@ -1,12 +1,8 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iot_project/Device%20Pages/DeviceSubPage.dart';
 import 'package:iot_project/Device%20Pages/device%20Three.dart';
 import 'package:iot_project/Device%20Pages/device%20Two.dart';
 import 'package:iot_project/Device%20Pages/device%20one.dart';
-import 'package:iot_project/sensor%20pages/Humidity%20Pages/Humidity.dart';
-import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/PH%20sensor.dart';
-import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/WaterFlow.dart';
-import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/soil%20moisture.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/temprature.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -41,23 +37,30 @@ class _DeviceScreenState extends State<DeviceScreen> {
                         icon: FontAwesomeIcons.diceOne,
                         data: "Device 1",
                         action: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => minione()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) =>
+                                      DeviceSubPage(id: "Device_1")));
                         }),
                     containerButton(
                       icon: FontAwesomeIcons.diceTwo,
                       data: "Device 2",
                       action: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => miniTwo()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => DeviceSubPage(id: "Device_2")));
                       },
                     ),
                     containerButton(
                       icon: FontAwesomeIcons.diceThree,
                       data: "Device 3",
                       action: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => miniThree()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => DeviceSubPage(id: "Device_3")));
                       },
                     ),
                   ],

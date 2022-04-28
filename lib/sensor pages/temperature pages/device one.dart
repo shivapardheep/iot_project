@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,6 +12,36 @@ class DOne extends StatefulWidget {
 }
 
 class _DOneState extends State<DOne> {
+  var fetchGetData;
+  var fetchPostData;
+  void getHttp() async {
+    try {
+      var response = await Dio().get(
+          'https://bae4-2409-4072-618b-fcf8-9530-a1f8-eb3a-6ed0.ngrok.io/api/devices/?format=json');
+      setState(() {
+        fetchGetData = response.data;
+      });
+      // print(response.data[2]);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  //post to get
+  void postHttp() async {
+    try {
+      var response = await Dio().post(
+          "https://bae4-2409-4072-618b-fcf8-9530-a1f8-eb3a-6ed0.ngrok.io/api/chart",
+          data: {"device_id": "001"});
+      setState(() {
+        fetchPostData = response.data;
+        fetchPostData = fetchPostData["temperature"];
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,7 +73,9 @@ class _DOneState extends State<DOne> {
         Container(
             height: 200,
             width: MediaQuery.of(context).size.width - 30,
-            child: GraphTwo()),
+            child: GraphTwo(
+              listData: [],
+            )),
       ],
     );
   }
