@@ -36,7 +36,7 @@ class _PhGraphState extends State<PhGraph> {
 
   void startCreatingDemoData() async {
     print("Called");
-    for (int i = 0; i < int.parse(_value.length.toString()); i++) {
+    for (int i = 0; i < 5; i++) {
       // print("for loop values ${_value[i]}");
 
       await Future.delayed((Duration(seconds: 1))).then(
@@ -60,7 +60,7 @@ class _PhGraphState extends State<PhGraph> {
                                           : 9;
           flspots.add(
             FlSpot(
-              double.parse(i.toString()),
+              double.parse(i.toString()) + 1,
               double.parse(a.toString()),
             ),
           );
@@ -162,7 +162,7 @@ class _PhGraphState extends State<PhGraph> {
         ),
         borderData: FlBorderData(
           show: true,
-          border: Border.all(color: Color(0xff37434d), width: 1),
+          border: Border.all(color: Color(0xff37434d), width: 5),
         ),
         minX: 0,
         maxX: 6,
@@ -176,7 +176,7 @@ class _PhGraphState extends State<PhGraph> {
               barWidth: 5,
               isStrokeCapRound: true,
               dotData: FlDotData(
-                show: false,
+                show: true,
               ),
               belowBarData: BarAreaData(
                 show: true,
@@ -188,7 +188,7 @@ class _PhGraphState extends State<PhGraph> {
   }
 
   List<FlSpot> flspots = [
-    FlSpot(0, 1),
+    FlSpot(0, 0),
   ];
 
   List<Color> gradientColors = [

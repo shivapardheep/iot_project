@@ -17,6 +17,8 @@ class TemperatureGraph extends StatefulWidget {
 class _TemperatureGraphState extends State<TemperatureGraph> {
   List<dynamic> _data = [];
   List<dynamic> _value = [];
+  var callvalue;
+
   void checkfun() {
     setState(() {
       print("data is : ${_data.toString()}");
@@ -30,18 +32,19 @@ class _TemperatureGraphState extends State<TemperatureGraph> {
     setChartData();
     _data = widget.date.toList();
     _value = widget.value.toList();
+    callvalue = _value[0];
     checkfun();
     startCreatingDemoData();
   }
 
   void startCreatingDemoData() async {
     print("Called");
-    for (int i = 0; i < int.parse(_value.length.toString()); i++) {
+    for (int i = 0; i < 5; i++) {
       // print("for loop values ${_value[i]}");
 
       await Future.delayed((Duration(seconds: 1))).then(
         (value) {
-          var a = double.parse(_value[i]).round() < 10
+          var aValue = double.parse(_value[i]).round() < 10
               ? 1
               : double.parse(_value[i]).round() < 20
                   ? 2
@@ -60,8 +63,8 @@ class _TemperatureGraphState extends State<TemperatureGraph> {
                                           : 9;
           flspots.add(
             FlSpot(
-              double.parse(i.toString()),
-              double.parse(a.toString()),
+              double.parse(i.toString()) + 1,
+              double.parse(aValue.toString()),
             ),
           );
           setState(() {
@@ -162,7 +165,7 @@ class _TemperatureGraphState extends State<TemperatureGraph> {
         ),
         borderData: FlBorderData(
           show: true,
-          border: Border.all(color: Color(0xff37434d), width: 1),
+          border: Border.all(color: Color(0xff37434d), width: 5),
         ),
         minX: 0,
         maxX: 6,
@@ -176,7 +179,7 @@ class _TemperatureGraphState extends State<TemperatureGraph> {
               barWidth: 5,
               isStrokeCapRound: true,
               dotData: FlDotData(
-                show: false,
+                show: true,
               ),
               belowBarData: BarAreaData(
                 show: true,
@@ -188,7 +191,7 @@ class _TemperatureGraphState extends State<TemperatureGraph> {
   }
 
   List<FlSpot> flspots = [
-    FlSpot(0, 1),
+    FlSpot(0, 0),
   ];
 
   List<Color> gradientColors = [

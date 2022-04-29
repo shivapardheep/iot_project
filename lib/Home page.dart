@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                       ToggleSwitch(
                         minWidth: 90.0,
                         minHeight: 50,
-                        cornerRadius: 20.0,
+                        cornerRadius: 5.0,
                         activeBgColors: const [
                           [Colors.green],
                           [Colors.red]

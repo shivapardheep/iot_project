@@ -1,8 +1,6 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iot_project/Device%20Pages/DeviceSubPage.dart';
-import 'package:iot_project/Device%20Pages/device%20Three.dart';
-import 'package:iot_project/Device%20Pages/device%20Two.dart';
-import 'package:iot_project/Device%20Pages/device%20one.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -74,7 +72,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       },
                     ),
                     containerButton(
-                      icon: FontAwesomeIcons.diceFour,
+                      icon: FontAwesomeIcons.diceFive,
                       data: "Device 5",
                       action: () {
                         Navigator.push(
@@ -84,7 +82,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                       },
                     ),
                     containerButton(
-                      icon: FontAwesomeIcons.diceFour,
+                      icon: FontAwesomeIcons.diceSix,
                       data: "Device 6",
                       action: () {
                         Navigator.push(
