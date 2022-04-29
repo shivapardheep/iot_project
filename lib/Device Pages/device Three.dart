@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:iot_project/sensor%20pages/Humidity%20Pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
 
-import '../../graph pages/graph 2 temp.dart';
 import '../sensor pages/Humidity Pages/device Two.dart';
 import '../sensor pages/Ph sensor pages/device Two.dart';
 import '../sensor pages/WaterFlow Pages/device Two.dart';
 import '../sensor pages/soil moisture pages/device Two.dart';
-import '../sensor pages/temperature pages/device Three.dart';
 
 class miniThree extends StatefulWidget {
   const miniThree({Key? key}) : super(key: key);
@@ -95,14 +98,20 @@ class _miniThreeState extends State<miniThree> {
                     height: 30,
                   ),
                   dropdownvalue == "Temperature"
-                      ? DThree()
+                      ? SubTempThree(
+                          deviceId: "Device_3", sensor: "temperature")
                       : dropdownvalue == "Humidity"
-                          ? HTwo()
+                          ? SubHumidityThree(
+                              deviceId: "Device_3", sensor: "humidity")
                           : dropdownvalue == "Soil Moisture"
-                              ? STwo()
+                              ? SubSoilThree(
+                                  deviceId: "Device_3", sensor: "soil_moisture")
                               : dropdownvalue == "Ph Sensor"
-                                  ? PTwo()
-                                  : WTwo(),
+                                  ? SubPhThree(
+                                      deviceId: "Device_3", sensor: "ph_value")
+                                  : SubWaterThree(
+                                      deviceId: "Device_3",
+                                      sensor: "temperature"),
                 ],
               ),
             ),

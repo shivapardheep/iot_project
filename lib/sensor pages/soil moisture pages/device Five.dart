@@ -2,22 +2,24 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iot_project/UrlPage/urlpage.dart';
+import 'package:iot_project/graph%20pages/Humidity.dart';
+import 'package:iot_project/graph%20pages/SoilMoisure.dart';
 import 'package:iot_project/graph%20pages/Temperature.dart';
 
 import '../../graph pages/graph 2 temp.dart';
 
-class SubWaterTwo extends StatefulWidget {
+class SubSoilFive extends StatefulWidget {
   final String deviceId;
   final String sensor;
 
-  const SubWaterTwo({Key? key, required this.deviceId, required this.sensor})
+  const SubSoilFive({Key? key, required this.deviceId, required this.sensor})
       : super(key: key);
 
   @override
-  State<SubWaterTwo> createState() => _SubWaterTwoState();
+  State<SubSoilFive> createState() => _SubSoilFiveState();
 }
 
-class _SubWaterTwoState extends State<SubWaterTwo> {
+class _SubSoilFiveState extends State<SubSoilFive> {
   var fetchGetData;
   var fetchPostData;
   List<dynamic> sharevalue = [];
@@ -87,7 +89,7 @@ class _SubWaterTwoState extends State<SubWaterTwo> {
             width: MediaQuery.of(context).size.width - 30,
             child: sharevalue.isEmpty
                 ? CircularProgressIndicator()
-                : TemperatureGraph(
+                : SoilGraph(
                     value: sharevalue,
                     date: defaultDate,
                   )),

@@ -6,18 +6,18 @@ import 'package:iot_project/graph%20pages/Temperature.dart';
 
 import '../../graph pages/graph 2 temp.dart';
 
-class SubWaterTwo extends StatefulWidget {
+class SubTempFour extends StatefulWidget {
   final String deviceId;
   final String sensor;
 
-  const SubWaterTwo({Key? key, required this.deviceId, required this.sensor})
+  const SubTempFour({Key? key, required this.deviceId, required this.sensor})
       : super(key: key);
 
   @override
-  State<SubWaterTwo> createState() => _SubWaterTwoState();
+  State<SubTempFour> createState() => _SubTempFourState();
 }
 
-class _SubWaterTwoState extends State<SubWaterTwo> {
+class _SubTempFourState extends State<SubTempFour> {
   var fetchGetData;
   var fetchPostData;
   List<dynamic> sharevalue = [];
@@ -28,6 +28,7 @@ class _SubWaterTwoState extends State<SubWaterTwo> {
       var response = await Dio().post(
           "http://angappanmuthu.pythonanywhere.com/api/chart",
           data: {"device_id": _deviceId.toString()});
+      print("Device id passed : ${_deviceId.toString()}");
       setState(() {
         fetchPostData = response.data;
         fetchPostData = fetchPostData[_sensor.toString()];
@@ -36,7 +37,7 @@ class _SubWaterTwoState extends State<SubWaterTwo> {
         //   print(fetchPostData[i]);
         //   sharevalue.add(fetchPostData[i]);
         // }
-        print("share value is : $sharevalue");
+        // print("share value is : $sharevalue");
       });
     } catch (e) {
       print(e);

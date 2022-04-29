@@ -6,18 +6,18 @@ import 'package:iot_project/graph%20pages/Temperature.dart';
 
 import '../../graph pages/graph 2 temp.dart';
 
-class SubWaterTwo extends StatefulWidget {
+class SubWaterSix extends StatefulWidget {
   final String deviceId;
   final String sensor;
 
-  const SubWaterTwo({Key? key, required this.deviceId, required this.sensor})
+  const SubWaterSix({Key? key, required this.deviceId, required this.sensor})
       : super(key: key);
 
   @override
-  State<SubWaterTwo> createState() => _SubWaterTwoState();
+  State<SubWaterSix> createState() => _SubWaterSixState();
 }
 
-class _SubWaterTwoState extends State<SubWaterTwo> {
+class _SubWaterSixState extends State<SubWaterSix> {
   var fetchGetData;
   var fetchPostData;
   List<dynamic> sharevalue = [];

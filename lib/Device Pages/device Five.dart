@@ -1,22 +1,30 @@
-import 'package:iot_project/sensor%20pages/Humidity%20Pages/device%20one.dart';
-import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20one.dart';
-import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20one.dart';
-import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20one.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/device%20one.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:iot_project/sensor%20pages/Humidity%20Pages/device%20Four.dart';
+import 'package:iot_project/sensor%20pages/Humidity%20Pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20Four.dart';
+import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20Four.dart';
+import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Four.dart';
+import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Four.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
 
-import '../../graph pages/graph 2 temp.dart';
+import '../sensor pages/Humidity Pages/device Two.dart';
+import '../sensor pages/Ph sensor pages/device Two.dart';
+import '../sensor pages/WaterFlow Pages/device Two.dart';
+import '../sensor pages/soil moisture pages/device Two.dart';
 
-class minione extends StatefulWidget {
-  const minione({Key? key}) : super(key: key);
+class miniThree extends StatefulWidget {
+  const miniThree({Key? key}) : super(key: key);
 
   @override
-  State<minione> createState() => _minioneState();
+  State<miniThree> createState() => _miniThreeState();
 }
 
-class _minioneState extends State<minione> {
+class _miniThreeState extends State<miniThree> {
   // DateTime now = DateTime.now();
   // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
   String dropdownvalue = 'Temperature';
@@ -43,7 +51,7 @@ class _minioneState extends State<minione> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Device 1",
+                    "Device 4",
                     style: GoogleFonts.anton()
                         .copyWith(fontSize: 50, color: Colors.white),
                   ),
@@ -95,20 +103,18 @@ class _minioneState extends State<minione> {
                     height: 30,
                   ),
                   dropdownvalue == "Temperature"
-                      ? SubTempOne(deviceId: "Device_1", sensor: "temperature")
+                      ? SubTempFour(deviceId: "Device_4", sensor: "temperature")
                       : dropdownvalue == "Humidity"
-                          ? SubHumidityOne(
-                              deviceId: 'Device_1',
-                              sensor: 'humidity',
-                            )
+                          ? SubHumidityFour(
+                              deviceId: "Device_4", sensor: "humidity")
                           : dropdownvalue == "Soil Moisture"
-                              ? SubSoilOne(
-                                  deviceId: "Device_1", sensor: "soil_moisture")
+                              ? SubSoilFour(
+                                  deviceId: "Device_4", sensor: "soil_moisture")
                               : dropdownvalue == "Ph Sensor"
-                                  ? SubPhOne(
-                                      deviceId: "Device_1", sensor: "ph_value")
-                                  : SubWaterOne(
-                                      deviceId: "Device_1",
+                                  ? SubPhFour(
+                                      deviceId: "Device_4", sensor: "ph_value")
+                                  : SubWaterFour(
+                                      deviceId: "Device_4",
                                       sensor: "temperature"),
                 ],
               ),

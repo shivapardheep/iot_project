@@ -1,6 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:iot_project/sensor%20pages/Humidity%20Pages/HumiditySubPage.dart';
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/SoilSubPage.dart';
+import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Five.dart';
+import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Four.dart';
+import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Six.dart';
+import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Two.dart';
+import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20one.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Two.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20one.dart';
@@ -43,6 +49,9 @@ class _SoilPageState extends State<SoilPage> {
     'Device_1',
     'Device_2',
     'Device_3',
+    'Device_4',
+    'Device_5',
+    'Device_6'
   ];
   @override
   void initState() {
@@ -57,7 +66,7 @@ class _SoilPageState extends State<SoilPage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -116,19 +125,34 @@ class _SoilPageState extends State<SoilPage> {
                     height: 30,
                   ),
                   dropdownvalue == "Device_1"
-                      ? SoilSubPage(
+                      ? SubSoilOne(
                           deviceId: 'Device_1',
                           sensor: 'soil_moisture',
                         )
                       : dropdownvalue == "Device_2"
-                          ? SoilSubPage(
+                          ? SubSoilTwo(
                               deviceId: 'Device_2',
                               sensor: 'soil_moisture',
                             )
-                          : SoilSubPage(
-                              deviceId: 'Device_3',
-                              sensor: 'soil_moisture',
-                            ),
+                          : dropdownvalue == "Device_3"
+                              ? SubSoilThree(
+                                  deviceId: 'Device_3',
+                                  sensor: 'soil_moisture',
+                                )
+                              : dropdownvalue == "Device_4"
+                                  ? SubSoilFour(
+                                      deviceId: 'Device_4',
+                                      sensor: 'soil_moisture',
+                                    )
+                                  : dropdownvalue == "Device_5"
+                                      ? SubSoilFive(
+                                          deviceId: 'Device_5',
+                                          sensor: 'soil_moisture',
+                                        )
+                                      : SubSoilSix(
+                                          deviceId: 'Device_6',
+                                          sensor: 'soil_moisture',
+                                        )
                 ],
               ),
             ),

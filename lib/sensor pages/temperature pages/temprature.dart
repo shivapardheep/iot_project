@@ -1,15 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:iot_project/sensor%20pages/Humidity%20Pages/HumiditySubPage.dart';
-import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/SoilSubPage.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Two.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/device%20one.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/subTemperature.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Five.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Four.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Six.dart';
+import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
 
-import '../../graph pages/graph 2 temp.dart';
+import 'device Two.dart';
+import 'device one.dart';
 
 class TemperaturePage extends StatefulWidget {
   const TemperaturePage({Key? key}) : super(key: key);
@@ -43,6 +42,9 @@ class _TemperaturePageState extends State<TemperaturePage> {
     'Device_1',
     'Device_2',
     'Device_3',
+    'Device_4',
+    'Device_5',
+    'Device_6'
   ];
   @override
   void initState() {
@@ -57,7 +59,7 @@ class _TemperaturePageState extends State<TemperaturePage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -116,19 +118,34 @@ class _TemperaturePageState extends State<TemperaturePage> {
                     height: 30,
                   ),
                   dropdownvalue == "Device_1"
-                      ? TempSubPage(
+                      ? const SubTempOne(
                           deviceId: 'Device_1',
                           sensor: 'temperature',
                         )
                       : dropdownvalue == "Device_2"
-                          ? TempSubPage(
+                          ? const SubTempTwo(
                               deviceId: 'Device_2',
                               sensor: 'temperature',
                             )
-                          : TempSubPage(
-                              deviceId: 'Device_3',
-                              sensor: 'temperature',
-                            ),
+                          : dropdownvalue == "Device_3"
+                              ? const SubTempThree(
+                                  deviceId: 'Device_3',
+                                  sensor: 'temperature',
+                                )
+                              : dropdownvalue == "Device_4"
+                                  ? const SubTempFour(
+                                      deviceId: 'Device_4',
+                                      sensor: 'temperature',
+                                    )
+                                  : dropdownvalue == "Device_5"
+                                      ? const SubTempFive(
+                                          deviceId: 'Device_5',
+                                          sensor: 'temperature',
+                                        )
+                                      : const SubTempSix(
+                                          deviceId: 'Device_6',
+                                          sensor: 'temperature',
+                                        ),
                 ],
               ),
             ),

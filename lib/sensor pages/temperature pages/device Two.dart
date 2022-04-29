@@ -1,16 +1,60 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iot_project/UrlPage/urlpage.dart';
+import 'package:iot_project/graph%20pages/Temperature.dart';
 
 import '../../graph pages/graph 2 temp.dart';
 
-class DTwo extends StatefulWidget {
-  const DTwo({Key? key}) : super(key: key);
+class SubTempTwo extends StatefulWidget {
+  final String deviceId;
+  final String sensor;
+
+  const SubTempTwo({Key? key, required this.deviceId, required this.sensor})
+      : super(key: key);
 
   @override
-  State<DTwo> createState() => _DTwoState();
+  State<SubTempTwo> createState() => _SubTempTwoState();
 }
 
-class _DTwoState extends State<DTwo> {
+class _SubTempTwoState extends State<SubTempTwo> {
+  var fetchGetData;
+  var fetchPostData;
+  List<dynamic> sharevalue = [];
+
+  //post to get
+  void postHttp() async {
+    try {
+      var response = await Dio().post(
+          "http://angappanmuthu.pythonanywhere.com/api/chart",
+          data: {"device_id": _deviceId.toString()});
+      print("Device id passed : ${_deviceId.toString()}");
+      setState(() {
+        fetchPostData = response.data;
+        fetchPostData = fetchPostData[_sensor.toString()];
+        sharevalue = fetchPostData;
+        // for (int i = 0; i < int.parse(fetchPostData.length.toString()); i++) {
+        //   print(fetchPostData[i]);
+        //   sharevalue.add(fetchPostData[i]);
+        // }
+        // print("share value is : $sharevalue");
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  var _deviceId;
+  var _sensor;
+
+  @override
+  void initState() {
+    super.initState();
+    _deviceId = widget.deviceId;
+    _sensor = widget.sensor;
+    postHttp();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,9 +86,12 @@ class _DTwoState extends State<DTwo> {
         Container(
             height: 200,
             width: MediaQuery.of(context).size.width - 30,
-            child: GraphTwo(
-              listData: [],
-            )),
+            child: sharevalue.isEmpty
+                ? CircularProgressIndicator()
+                : TemperatureGraph(
+                    value: sharevalue,
+                    date: defaultDate,
+                  )),
       ],
     );
   }

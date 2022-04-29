@@ -1,45 +1,58 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iot_project/UrlPage/urlpage.dart';
+import 'package:iot_project/graph%20pages/Temperature.dart';
 
 import '../../graph pages/graph 2 temp.dart';
 
-class DOne extends StatefulWidget {
-  const DOne({Key? key}) : super(key: key);
+class SubTempOne extends StatefulWidget {
+  final String deviceId;
+  final String sensor;
+
+  const SubTempOne({Key? key, required this.deviceId, required this.sensor})
+      : super(key: key);
 
   @override
-  State<DOne> createState() => _DOneState();
+  State<SubTempOne> createState() => _SubTempOneState();
 }
 
-class _DOneState extends State<DOne> {
+class _SubTempOneState extends State<SubTempOne> {
   var fetchGetData;
   var fetchPostData;
-  void getHttp() async {
-    try {
-      var response = await Dio().get(
-          'https://bae4-2409-4072-618b-fcf8-9530-a1f8-eb3a-6ed0.ngrok.io/api/devices/?format=json');
-      setState(() {
-        fetchGetData = response.data;
-      });
-      // print(response.data[2]);
-    } catch (e) {
-      print(e);
-    }
-  }
+  List<dynamic> sharevalue = [];
 
   //post to get
   void postHttp() async {
     try {
       var response = await Dio().post(
-          "https://bae4-2409-4072-618b-fcf8-9530-a1f8-eb3a-6ed0.ngrok.io/api/chart",
-          data: {"device_id": "001"});
+          "http://angappanmuthu.pythonanywhere.com/api/chart",
+          data: {"device_id": _deviceId.toString()});
+      print("Device id passed : ${_deviceId.toString()}");
       setState(() {
         fetchPostData = response.data;
-        fetchPostData = fetchPostData["temperature"];
+        fetchPostData = fetchPostData[_sensor.toString()];
+        sharevalue = fetchPostData;
+        // for (int i = 0; i < int.parse(fetchPostData.length.toString()); i++) {
+        //   print(fetchPostData[i]);
+        //   sharevalue.add(fetchPostData[i]);
+        // }
+        // print("share value is : $sharevalue");
       });
     } catch (e) {
       print(e);
     }
+  }
+
+  var _deviceId;
+  var _sensor;
+
+  @override
+  void initState() {
+    super.initState();
+    _deviceId = widget.deviceId;
+    _sensor = widget.sensor;
+    postHttp();
   }
 
   @override
@@ -73,9 +86,12 @@ class _DOneState extends State<DOne> {
         Container(
             height: 200,
             width: MediaQuery.of(context).size.width - 30,
-            child: GraphTwo(
-              listData: [],
-            )),
+            child: sharevalue.isEmpty
+                ? CircularProgressIndicator()
+                : TemperatureGraph(
+                    value: sharevalue,
+                    date: defaultDate,
+                  )),
       ],
     );
   }

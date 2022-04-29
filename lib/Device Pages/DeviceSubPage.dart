@@ -53,7 +53,13 @@ class _DeviceSubPageState extends State<DeviceSubPage> {
                         ? "Device 1"
                         : _id == "Device_2"
                             ? "Device 2"
-                            : "Device 3",
+                            : _id == "Device_3"
+                                ? "Device 3"
+                                : _id == "Device_4"
+                                    ? "Device 4"
+                                    : _id == "Device_5"
+                                        ? "Device 5"
+                                        : "Device 6",
                     style: GoogleFonts.anton()
                         .copyWith(fontSize: 50, color: Colors.white),
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20Three.dart';
 
 import '../../graph pages/graph 2 temp.dart';
 import '../sensor pages/Humidity Pages/device Two.dart';
@@ -95,14 +96,19 @@ class _miniTwoState extends State<miniTwo> {
                     height: 30,
                   ),
                   dropdownvalue == "Temperature"
-                      ? DTwo()
+                      ? SubTempTwo(deviceId: "Device_2", sensor: "temperature")
                       : dropdownvalue == "Humidity"
-                          ? HTwo()
+                          ? SubHumidityTwo(
+                              deviceId: "Device_2", sensor: "humidity")
                           : dropdownvalue == "Soil Moisture"
-                              ? STwo()
+                              ? SubSoilTwo(
+                                  deviceId: "Device_2", sensor: "soil_moisture")
                               : dropdownvalue == "Ph Sensor"
-                                  ? PTwo()
-                                  : WTwo(),
+                                  ? SubPhTwo(
+                                      deviceId: "Device_2", sensor: "ph_value")
+                                  : SubWaterThree(
+                                      deviceId: "Device_2",
+                                      sensor: "temperature"),
                 ],
               ),
             ),

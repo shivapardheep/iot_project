@@ -1,6 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:iot_project/sensor%20pages/Humidity%20Pages/HumiditySubPage.dart';
 import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/PhSubPage.dart';
+import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20Five.dart';
+import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20Four.dart';
+import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20Six.dart';
+import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20Two.dart';
+import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20one.dart';
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/SoilSubPage.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Two.dart';
@@ -44,6 +50,9 @@ class _PhPageState extends State<PhPage> {
     'Device_1',
     'Device_2',
     'Device_3',
+    'Device_4',
+    'Device_5',
+    'Device_6'
   ];
   @override
   void initState() {
@@ -58,7 +67,7 @@ class _PhPageState extends State<PhPage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -117,19 +126,34 @@ class _PhPageState extends State<PhPage> {
                     height: 30,
                   ),
                   dropdownvalue == "Device_1"
-                      ? PhSubpage(
+                      ? SubPhOne(
                           deviceId: 'Device_1',
                           sensor: 'ph_value',
                         )
                       : dropdownvalue == "Device_2"
-                          ? PhSubpage(
+                          ? SubPhTwo(
                               deviceId: 'Device_2',
                               sensor: 'ph_value',
                             )
-                          : PhSubpage(
-                              deviceId: 'Device_3',
-                              sensor: 'ph_value',
-                            ),
+                          : dropdownvalue == "Device_3"
+                              ? SubPhThree(
+                                  deviceId: 'Device_3',
+                                  sensor: 'ph_value',
+                                )
+                              : dropdownvalue == "Device_4"
+                                  ? SubPhFour(
+                                      deviceId: 'Device_4',
+                                      sensor: 'ph_value',
+                                    )
+                                  : dropdownvalue == "Device_5"
+                                      ? SubPhFive(
+                                          deviceId: 'Device_5',
+                                          sensor: 'ph_value',
+                                        )
+                                      : SubPhSIx(
+                                          deviceId: 'Device_6',
+                                          sensor: 'ph_value',
+                                        ),
                 ],
               ),
             ),

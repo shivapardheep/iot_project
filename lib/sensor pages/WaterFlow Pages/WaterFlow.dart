@@ -1,5 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:iot_project/sensor%20pages/Humidity%20Pages/HumiditySubPage.dart';
+import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20Five.dart';
+import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20Three.dart';
+import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20Two.dart';
+import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20one.dart';
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/SoilSubPage.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Two.dart';
@@ -10,6 +14,8 @@ import 'package:intl/intl.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/subTemperature.dart';
 
 import '../../graph pages/graph 2 temp.dart';
+import 'device Four.dart';
+import 'device Six.dart';
 
 class WaterPage extends StatefulWidget {
   const WaterPage({Key? key}) : super(key: key);
@@ -43,6 +49,9 @@ class _WaterPageState extends State<WaterPage> {
     'Device_1',
     'Device_2',
     'Device_3',
+    'Device_4',
+    'Device_5',
+    'Device_6'
   ];
   @override
   void initState() {
@@ -57,7 +66,7 @@ class _WaterPageState extends State<WaterPage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -116,19 +125,34 @@ class _WaterPageState extends State<WaterPage> {
                     height: 30,
                   ),
                   dropdownvalue == "Device_1"
-                      ? TempSubPage(
+                      ? SubWaterOne(
                           deviceId: 'Device_1',
                           sensor: 'temperature',
                         )
                       : dropdownvalue == "Device_2"
-                          ? TempSubPage(
+                          ? SubWaterTwo(
                               deviceId: 'Device_2',
                               sensor: 'temperature',
                             )
-                          : TempSubPage(
-                              deviceId: 'Device_3',
-                              sensor: 'temperature',
-                            ),
+                          : dropdownvalue == "Device_3"
+                              ? SubWaterThree(
+                                  deviceId: 'Device_3',
+                                  sensor: 'temperature',
+                                )
+                              : dropdownvalue == "Device_4"
+                                  ? SubWaterFour(
+                                      deviceId: 'Device_4',
+                                      sensor: 'temperature',
+                                    )
+                                  : dropdownvalue == "Device_5"
+                                      ? SubWaterFive(
+                                          deviceId: 'Device_5',
+                                          sensor: 'temperature',
+                                        )
+                                      : SubWaterSix(
+                                          deviceId: 'Device_6',
+                                          sensor: 'temperature',
+                                        ),
                 ],
               ),
             ),

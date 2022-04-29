@@ -147,6 +147,8 @@ class _SoilGraphState extends State<SoilGraph> {
                   return '8';
                 case 9:
                   return '9';
+                case 10:
+                  return '10';
               }
               return '';
             },
@@ -167,7 +169,7 @@ class _SoilGraphState extends State<SoilGraph> {
         minX: 0,
         maxX: 6,
         minY: 0,
-        maxY: 9,
+        maxY: 10,
         lineBarsData: [
           LineChartBarData(
               spots: flspots,

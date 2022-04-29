@@ -18,7 +18,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
         child: Container(
             height: MediaQuery.of(context).size.height,
             child: Center(
@@ -61,6 +61,36 @@ class _DeviceScreenState extends State<DeviceScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => DeviceSubPage(id: "Device_3")));
+                      },
+                    ),
+                    containerButton(
+                      icon: FontAwesomeIcons.diceFour,
+                      data: "Device 4",
+                      action: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => DeviceSubPage(id: "Device_4")));
+                      },
+                    ),
+                    containerButton(
+                      icon: FontAwesomeIcons.diceFour,
+                      data: "Device 5",
+                      action: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => DeviceSubPage(id: "Device_5")));
+                      },
+                    ),
+                    containerButton(
+                      icon: FontAwesomeIcons.diceFour,
+                      data: "Device 6",
+                      action: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => DeviceSubPage(id: "Device_6")));
                       },
                     ),
                   ],

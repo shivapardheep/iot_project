@@ -1,17 +1,61 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iot_project/UrlPage/urlpage.dart';
+import 'package:iot_project/graph%20pages/Humidity.dart';
+import 'package:iot_project/graph%20pages/SoilMoisure.dart';
+import 'package:iot_project/graph%20pages/Temperature.dart';
 
 import '../../graph pages/graph 2 temp.dart';
-import '../../graph pages/graph 3 soil.dart';
 
-class STwo extends StatefulWidget {
-  const STwo({Key? key}) : super(key: key);
+class SubSoilTwo extends StatefulWidget {
+  final String deviceId;
+  final String sensor;
+
+  const SubSoilTwo({Key? key, required this.deviceId, required this.sensor})
+      : super(key: key);
 
   @override
-  State<STwo> createState() => _STwoState();
+  State<SubSoilTwo> createState() => _SubSoilTwoState();
 }
 
-class _STwoState extends State<STwo> {
+class _SubSoilTwoState extends State<SubSoilTwo> {
+  var fetchGetData;
+  var fetchPostData;
+  List<dynamic> sharevalue = [];
+
+  //post to get
+  void postHttp() async {
+    try {
+      var response = await Dio().post(
+          "http://angappanmuthu.pythonanywhere.com/api/chart",
+          data: {"device_id": _deviceId.toString()});
+      setState(() {
+        fetchPostData = response.data;
+        fetchPostData = fetchPostData[_sensor.toString()];
+        sharevalue = fetchPostData;
+        // for (int i = 0; i < int.parse(fetchPostData.length.toString()); i++) {
+        //   print(fetchPostData[i]);
+        //   sharevalue.add(fetchPostData[i]);
+        // }
+        print("share value is : $sharevalue");
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  var _deviceId;
+  var _sensor;
+
+  @override
+  void initState() {
+    super.initState();
+    _deviceId = widget.deviceId;
+    _sensor = widget.sensor;
+    postHttp();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,7 +87,12 @@ class _STwoState extends State<STwo> {
         Container(
             height: 200,
             width: MediaQuery.of(context).size.width - 30,
-            child: GraphThree()),
+            child: sharevalue.isEmpty
+                ? CircularProgressIndicator()
+                : SoilGraph(
+                    value: sharevalue,
+                    date: defaultDate,
+                  )),
       ],
     );
   }

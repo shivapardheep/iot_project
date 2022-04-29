@@ -28,6 +28,7 @@ class _TempSubPageState extends State<TempSubPage> {
       var response = await Dio().post(
           "http://angappanmuthu.pythonanywhere.com/api/chart",
           data: {"device_id": _deviceId.toString()});
+      print("Device id passed : ${_deviceId.toString()}");
       setState(() {
         fetchPostData = response.data;
         fetchPostData = fetchPostData[_sensor.toString()];
@@ -36,7 +37,7 @@ class _TempSubPageState extends State<TempSubPage> {
         //   print(fetchPostData[i]);
         //   sharevalue.add(fetchPostData[i]);
         // }
-        print("share value is : $sharevalue");
+        // print("share value is : $sharevalue");
       });
     } catch (e) {
       print(e);
