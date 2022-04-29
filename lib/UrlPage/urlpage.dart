@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-const deviceUrl = "";
-const sensorUrl = "";
+const deviceUrl = "http://angappanmuthu.pythonanywhere.com/api/devices/";
+const sensorUrl = "http://angappanmuthu.pythonanywhere.com/api/chart";
 const TempUrl = "";
 const HumidityUrl = "";
 const WorkFlowUrl = "";

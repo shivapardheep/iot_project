@@ -6,6 +6,7 @@ import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Five.dar
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Four.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Six.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
+import 'package:auto_reload/auto_reload.dart';
 
 import 'device Two.dart';
 import 'device one.dart';
@@ -21,19 +22,19 @@ class _TemperaturePageState extends State<TemperaturePage> {
   var fetchGetData;
 
   // get data
-  void getHttp() async {
-    try {
-      var response = await Dio()
-          .get('http://angappanmuthu.pythonanywhere.com/api/devices/');
-      setState(() {
-        fetchGetData = response.data;
-        print(fetchGetData[0]['device']);
-      });
-      // print(response.data[2]);
-    } catch (e) {
-      print(e);
-    }
-  }
+  // void getHttp() async {
+  //   try {
+  //     var response = await Dio()
+  //         .get('http://angappanmuthu.pythonanywhere.com/api/devices/');
+  //     setState(() {
+  //       fetchGetData = response.data;
+  //       print(fetchGetData[0]['device']);
+  //     });
+  //     // print(response.data[2]);
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   String dropdownvalue = 'Device_1';
 
@@ -49,6 +50,8 @@ class _TemperaturePageState extends State<TemperaturePage> {
   @override
   void initState() {
     super.initState();
+    Future.delayed((Duration(seconds: 1)))
+        .then((value) => print("I am auto refresh"));
     // getHttp();
   }
 

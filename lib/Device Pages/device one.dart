@@ -5,9 +5,6 @@ import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20one.
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20one.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-
-import '../../graph pages/graph 2 temp.dart';
 
 class minione extends StatefulWidget {
   const minione({Key? key}) : super(key: key);

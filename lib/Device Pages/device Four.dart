@@ -1,21 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:iot_project/sensor%20pages/Humidity%20Pages/device%20Four.dart';
-import 'package:iot_project/sensor%20pages/Humidity%20Pages/device%20Three.dart';
 import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20Four.dart';
-import 'package:iot_project/sensor%20pages/Ph%20sensor%20pages/device%20Three.dart';
 import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20Four.dart';
-import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20Three.dart';
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Four.dart';
-import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Three.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Four.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
-
-import '../sensor pages/Humidity Pages/device Two.dart';
-import '../sensor pages/Ph sensor pages/device Two.dart';
-import '../sensor pages/WaterFlow Pages/device Two.dart';
-import '../sensor pages/soil moisture pages/device Two.dart';
 
 class miniFour extends StatefulWidget {
   const miniFour({Key? key}) : super(key: key);

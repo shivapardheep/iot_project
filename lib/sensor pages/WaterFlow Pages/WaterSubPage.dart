@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iot_project/UrlPage/urlpage.dart';
 import 'package:iot_project/graph%20pages/Temperature.dart';
 
-import '../../graph pages/graph 2 temp.dart';
-
 class WaterSubPage extends StatefulWidget {
   final String deviceId;
   final String sensor;

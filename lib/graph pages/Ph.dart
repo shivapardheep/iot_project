@@ -39,7 +39,7 @@ class _PhGraphState extends State<PhGraph> {
     for (int i = 0; i < 5; i++) {
       // print("for loop values ${_value[i]}");
 
-      await Future.delayed((Duration(seconds: 1))).then(
+      await Future.delayed((Duration(milliseconds: 100))).then(
         (value) {
           var a = double.parse(_value[i]).round() < 10
               ? 1

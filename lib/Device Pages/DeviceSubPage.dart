@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iot_project/sensor%20pages/temperature%20pages/subTemperature.dart';
 
-import '../../graph pages/graph 2 temp.dart';
-
 class DeviceSubPage extends StatefulWidget {
   final String id;
 

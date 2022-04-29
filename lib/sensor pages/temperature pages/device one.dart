@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iot_project/UrlPage/urlpage.dart';
 import 'package:iot_project/graph%20pages/Temperature.dart';
 
-import '../../graph pages/graph 2 temp.dart';
-
 class SubTempOne extends StatefulWidget {
   final String deviceId;
   final String sensor;
@@ -25,8 +23,7 @@ class _SubTempOneState extends State<SubTempOne> {
   //post to get
   void postHttp() async {
     try {
-      var response = await Dio().post(
-          "http://angappanmuthu.pythonanywhere.com/api/chart",
+      var response = await Dio().post(sensorUrl.toString(),
           data: {"device_id": _deviceId.toString()});
       print("Device id passed : ${_deviceId.toString()}");
       setState(() {

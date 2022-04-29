@@ -2,12 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iot_project/UrlPage/urlpage.dart';
-import 'package:iot_project/graph%20pages/Humidity.dart';
 import 'package:iot_project/graph%20pages/Ph.dart';
-import 'package:iot_project/graph%20pages/SoilMoisure.dart';
-import 'package:iot_project/graph%20pages/Temperature.dart';
-
-import '../../graph pages/graph 2 temp.dart';
 
 class SubPhThree extends StatefulWidget {
   final String deviceId;

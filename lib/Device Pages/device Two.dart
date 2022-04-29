@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:iot_project/sensor%20pages/WaterFlow%20Pages/device%20Three.dart';
 
-import '../../graph pages/graph 2 temp.dart';
 import '../sensor pages/Humidity Pages/device Two.dart';
 import '../sensor pages/Ph sensor pages/device Two.dart';
-import '../sensor pages/WaterFlow Pages/device Two.dart';
 import '../sensor pages/soil moisture pages/device Two.dart';
 import '../sensor pages/temperature pages/device Two.dart';
 

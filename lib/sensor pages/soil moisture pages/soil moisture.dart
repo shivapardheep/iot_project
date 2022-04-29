@@ -1,21 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:iot_project/sensor%20pages/Humidity%20Pages/HumiditySubPage.dart';
-import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/SoilSubPage.dart';
+
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Five.dart';
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Four.dart';
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Six.dart';
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Three.dart';
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20Two.dart';
 import 'package:iot_project/sensor%20pages/soil%20moisture%20pages/device%20one.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Three.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/device%20Two.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/device%20one.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:iot_project/sensor%20pages/temperature%20pages/subTemperature.dart';
-
-import '../../graph pages/graph 2 temp.dart';
 
 class SoilPage extends StatefulWidget {
   const SoilPage({Key? key}) : super(key: key);

@@ -42,7 +42,7 @@ class _TemperatureGraphState extends State<TemperatureGraph> {
     for (int i = 0; i < 5; i++) {
       // print("for loop values ${_value[i]}");
 
-      await Future.delayed((Duration(seconds: 1))).then(
+      await Future.delayed((Duration(milliseconds: 100))).then(
         (value) {
           var aValue = double.parse(_value[i]).round() < 10
               ? 1
