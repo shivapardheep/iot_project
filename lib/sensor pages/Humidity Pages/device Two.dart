@@ -83,15 +83,15 @@ class _SubHumidityTwoState extends State<SubHumidityTwo> {
         const SizedBox(
           height: 5,
         ),
-        Container(
-            height: 200,
-            width: MediaQuery.of(context).size.width - 30,
-            child: sharevalue.isEmpty
-                ? CircularProgressIndicator()
-                : HumidityGraph(
-                    value: sharevalue,
-                    date: defaultDate,
-                  )),
+        sharevalue.isEmpty
+            ? CircularProgressIndicator()
+            : Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width - 30,
+                child: HumidityGraph(
+                  value: sharevalue,
+                  date: defaultDate,
+                )),
       ],
     );
   }

@@ -84,15 +84,15 @@ class _SubSoilSixState extends State<SubSoilSix> {
         const SizedBox(
           height: 5,
         ),
-        Container(
-            height: 200,
-            width: MediaQuery.of(context).size.width - 30,
-            child: sharevalue.isEmpty
-                ? CircularProgressIndicator()
-                : SoilGraph(
-                    value: sharevalue,
-                    date: defaultDate,
-                  )),
+        sharevalue.isEmpty
+            ? CircularProgressIndicator()
+            : Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width - 30,
+                child: SoilGraph(
+                  value: sharevalue,
+                  date: defaultDate,
+                )),
       ],
     );
   }

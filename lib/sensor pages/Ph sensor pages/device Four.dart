@@ -85,15 +85,15 @@ class _SubPhFourState extends State<SubPhFour> {
         const SizedBox(
           height: 5,
         ),
-        Container(
-            height: 200,
-            width: MediaQuery.of(context).size.width - 30,
-            child: sharevalue.isEmpty
-                ? CircularProgressIndicator()
-                : PhGraph(
-                    value: sharevalue,
-                    date: defaultDate,
-                  )),
+        sharevalue.isEmpty
+            ? CircularProgressIndicator()
+            : Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width - 30,
+                child: PhGraph(
+                  value: sharevalue,
+                  date: defaultDate,
+                )),
       ],
     );
   }

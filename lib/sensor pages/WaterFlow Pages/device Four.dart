@@ -82,15 +82,15 @@ class _SubWaterFourState extends State<SubWaterFour> {
         const SizedBox(
           height: 5,
         ),
-        Container(
-            height: 200,
-            width: MediaQuery.of(context).size.width - 30,
-            child: sharevalue.isEmpty
-                ? CircularProgressIndicator()
-                : TemperatureGraph(
-                    value: sharevalue,
-                    date: defaultDate,
-                  )),
+        sharevalue.isEmpty
+            ? CircularProgressIndicator()
+            : Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width - 30,
+                child: TemperatureGraph(
+                  value: sharevalue,
+                  date: defaultDate,
+                )),
       ],
     );
   }
