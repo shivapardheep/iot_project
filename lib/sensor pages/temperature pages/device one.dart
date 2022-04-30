@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,11 +32,6 @@ class _SubTempOneState extends State<SubTempOne> {
         fetchPostData = response.data;
         fetchPostData = fetchPostData[_sensor.toString()];
         sharevalue = fetchPostData;
-        // for (int i = 0; i < int.parse(fetchPostData.length.toString()); i++) {
-        //   print(fetchPostData[i]);
-        //   sharevalue.add(fetchPostData[i]);
-        // }
-        // print("share value is : $sharevalue");
       });
     } catch (e) {
       print(e);
@@ -50,6 +47,13 @@ class _SubTempOneState extends State<SubTempOne> {
     _deviceId = widget.deviceId;
     _sensor = widget.sensor;
     postHttp();
+    // Timer.periodic(Duration(seconds: 5), (timer) {
+    //   setState(() {
+    //     print("i am a timer seconds...new...");
+    //     // dropdownvalue = "Device_1";
+    //     postHttp();
+    //   });
+    // });
   }
 
   @override

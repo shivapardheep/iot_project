@@ -24,17 +24,13 @@ class _SubHumidityThreeState extends State<SubHumidityThree> {
   //post to get
   void postHttp() async {
     try {
-      var response = await Dio().post(
-          "http://angappanmuthu.pythonanywhere.com/api/chart",
+      var response = await Dio().post(sensorUrl.toString(),
           data: {"device_id": _deviceId.toString()});
       setState(() {
         fetchPostData = response.data;
         fetchPostData = fetchPostData[_sensor.toString()];
         sharevalue = fetchPostData;
-        // for (int i = 0; i < int.parse(fetchPostData.length.toString()); i++) {
-        //   print(fetchPostData[i]);
-        //   sharevalue.add(fetchPostData[i]);
-        // }
+
         print("share value is : $sharevalue");
       });
     } catch (e) {

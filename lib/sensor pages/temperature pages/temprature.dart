@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
@@ -21,21 +23,6 @@ class TemperaturePage extends StatefulWidget {
 class _TemperaturePageState extends State<TemperaturePage> {
   var fetchGetData;
 
-  // get data
-  // void getHttp() async {
-  //   try {
-  //     var response = await Dio()
-  //         .get('http://angappanmuthu.pythonanywhere.com/api/devices/');
-  //     setState(() {
-  //       fetchGetData = response.data;
-  //       print(fetchGetData[0]['device']);
-  //     });
-  //     // print(response.data[2]);
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
   String dropdownvalue = 'Device_1';
 
   // List of items in our dropdown menu
@@ -50,8 +37,12 @@ class _TemperaturePageState extends State<TemperaturePage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed((Duration(seconds: 1)))
-        .then((value) => print("I am auto refresh"));
+    // Timer.periodic(Duration(seconds: 5), (timer) {
+    //   setState(() {
+    //     print("i am a timer seconds...5...");
+    //     // dropdownvalue = "Device_1";
+    //   });
+    // });
     // getHttp();
   }
 

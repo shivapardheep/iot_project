@@ -21,21 +21,6 @@ class WaterPage extends StatefulWidget {
 class _WaterPageState extends State<WaterPage> {
   var fetchGetData;
 
-  // get data
-  void getHttp() async {
-    try {
-      var response = await Dio()
-          .get('http://angappanmuthu.pythonanywhere.com/api/devices/');
-      setState(() {
-        fetchGetData = response.data;
-        print(fetchGetData[0]['device']);
-      });
-      // print(response.data[2]);
-    } catch (e) {
-      print(e);
-    }
-  }
-
   String dropdownvalue = 'Device_1';
 
   // List of items in our dropdown menu

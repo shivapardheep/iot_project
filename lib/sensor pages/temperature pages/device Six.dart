@@ -23,8 +23,7 @@ class _SubTempSixState extends State<SubTempSix> {
   //post to get
   void postHttp() async {
     try {
-      var response = await Dio().post(
-          "http://angappanmuthu.pythonanywhere.com/api/chart",
+      var response = await Dio().post(sensorUrl.toString(),
           data: {"device_id": _deviceId.toString()});
       print("Device id passed : ${_deviceId.toString()}");
       setState(() {
